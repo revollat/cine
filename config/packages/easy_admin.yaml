@@ -1,3 +1,5 @@
 easy_admin:
     entities:
         - App\Entity\Film
+        - App\Entity\Page
+        - App\Entity\Category
