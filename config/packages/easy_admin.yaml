@@ -1,14 +1,31 @@
 easy_admin:
+
+    site_name: 'Cinématheque de Nice'
+    formats:
+        date:     'd/m/Y'
+        time:     'H:i'
+        datetime: 'd/m/Y H:i:s'
+    disabled_actions: ['show']
+
     entities:
+    
         Film:
             class: App\Entity\Film
             label: 'Films'
+            
             list:
                 fields:
                     - { property: titre, label: 'Titre' }
-                    - { property: 'imageName', type: 'image', base_path: '%app.path.films_image%' }
+                    - { property: 'imageName', label: 'Affiche', type: 'image', base_path: '%app.path.films_image%' }
+                    - { property: 'updatedAt', label: 'Dernière MàJ', format: 'd/m à H:i' }
+                    
             form:
                 title: "Modification/édition"
                 fields:
                     - { property: titre, label: 'Titre' }
                     - { property: 'imageFile', type: 'vich_image', label: 'Affiche'  }
+                    
+    design: # Pour les optiosn possibles cf. https://github.com/javiereguiluz/EasyAdminBundle/blob/master/Resources/doc/book/2-design-configuration.md
+        color_scheme: 'light'
+        menu:
+            - { entity: 'Film', label: 'Films', icon: 'film', default: true, params: { sortField: 'updatedAt', sortDirection: 'DESC' } }
