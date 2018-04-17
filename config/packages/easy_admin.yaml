@@ -1,5 +1,14 @@
 easy_admin:
     entities:
-        - App\Entity\Film
-        - App\Entity\Page
-        - App\Entity\Category
+        Film:
+            class: App\Entity\Film
+            label: 'Films'
+            list:
+                fields:
+                    - { property: titre, label: 'Titre' }
+                    - { property: 'imageName', type: 'image', base_path: '%app.path.films_image%' }
+            form:
+                title: "Modification/édition"
+                fields:
+                    - { property: titre, label: 'Titre' }
+                    - { property: 'imageFile', type: 'vich_image', label: 'Affiche'  }
