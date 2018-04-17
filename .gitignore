@@ -70,3 +70,6 @@
 
 # Embedded web-server pid file
 /.web-server-pid
+
+/public/uploads/films/*
+!public/uploads/films/Test.png
