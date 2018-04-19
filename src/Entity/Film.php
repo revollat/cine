@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -32,10 +34,41 @@ class Film
     private $slug;
     
     /**
+     * @ORM\Column(type="string", length=500, nullable=true)
+     */
+    private $titrevo;
+    
+    /**
+     * @ORM\Column(type="string", length=500, nullable=true)
+     */
+    private $pays;
+    
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $annee;
+    
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $duree;
+    
+    /**
+     * @ORM\Column(type="string", length=500, nullable=true)
+     */
+    private $leformat;
+    
+    /**
      * @var string
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
+    
+    /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $note;
     
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -67,6 +100,16 @@ class Film
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Realisateur", mappedBy="films")
+     */
+    private $realisateurs;
+
+    public function __construct()
+    {
+        $this->realisateurs = new ArrayCollection();
+    }
     
 
     public function getId()
@@ -199,6 +242,106 @@ class Film
     public function getDescription()
     {
         return $this->description;
+    }
+
+    public function getTitrevo(): ?string
+    {
+        return $this->titrevo;
+    }
+
+    public function setTitrevo(?string $titrevo): self
+    {
+        $this->titrevo = $titrevo;
+
+        return $this;
+    }
+
+    public function getPays(): ?string
+    {
+        return $this->pays;
+    }
+
+    public function setPays(?string $pays): self
+    {
+        $this->pays = $pays;
+
+        return $this;
+    }
+
+    public function getAnnee(): ?int
+    {
+        return $this->annee;
+    }
+
+    public function setAnnee(?int $annee): self
+    {
+        $this->annee = $annee;
+
+        return $this;
+    }
+
+    public function getLeformat(): ?string
+    {
+        return $this->leformat;
+    }
+
+    public function setLeformat(?string $leformat): self
+    {
+        $this->leformat = $leformat;
+
+        return $this;
+    }
+
+    public function getNote(): ?string
+    {
+        return $this->note;
+    }
+
+    public function setNote(?string $note): self
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    public function getDuree(): ?string
+    {
+        return $this->duree;
+    }
+
+    public function setDuree(?string $duree): self
+    {
+        $this->duree = $duree;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Realisateur[]
+     */
+    public function getRealisateurs(): Collection
+    {
+        return $this->realisateurs;
+    }
+
+    public function addRealisateur(Realisateur $realisateur): self
+    {
+        if (!$this->realisateurs->contains($realisateur)) {
+            $this->realisateurs[] = $realisateur;
+            $realisateur->addFilm($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRealisateur(Realisateur $realisateur): self
+    {
+        if ($this->realisateurs->contains($realisateur)) {
+            $this->realisateurs->removeElement($realisateur);
+            $realisateur->removeFilm($this);
+        }
+
+        return $this;
     }
     
 }

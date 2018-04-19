@@ -1,3 +1,8 @@
+parameters:
+    choixformat:
+        'Long métrage': 'LM'
+        'Moyen métrage': 'MM'
+
 easy_admin:
 
     site_name: 'Cinématheque de Nice'
@@ -16,17 +21,34 @@ easy_admin:
             list:
                 fields:
                     - { property: titre, label: 'Titre' }
+                    - { property: annee, label: 'Année', type: 'text' }
                     - { property: 'imageName', label: 'Affiche', type: 'image', base_path: '%app.path.films_image%' }
                     - { property: 'updatedAt', label: 'Dernière MàJ', format: 'd/m à H:i' }
                     
             form:
                 title: "Modification/édition"
                 fields:
-                    - { property: titre, label: 'Titre' }
+                
+                    - { type: 'tab' , label: 'Informations principales', icon: 'info-circle' }
+                    - { type: 'section', label: 'Titre' }
+                    - { property: titre, label: 'Titre', css_class: 'input-large', icon: 'film' }
+                    - { property: titrevo, label: 'Titre (V.O.)', help: 'Si existant' }
+                    - { type: 'divider' }
+                    - { property: 'realisateurs', label: 'Réalisateur(s)' }
                     - { property: 'imageFile', type: 'vich_image', label: 'Affiche'  }
-                    - { property: 'description', type: 'Hillrange\CKEditor\Form\CKEditorType' }
+                    - { property: 'description', type: 'Hillrange\CKEditor\Form\CKEditorType', label: 'Synopsis' }
+                    #- { type: 'divider' }
+                    
+                    - { type: 'tab' , label: 'Détails', icon: 'info-circle' }
+                    - { type: 'section', label: 'Informations' }
+                    - { property: pays, label: 'Pays', type: 'country' }
+                    - { property: annee, label: 'Année', type: 'number' }
+                    - { property: duree, label: 'Durée' }
+                    - { type: 'section', label: 'Autre' }
+                    - { property: 'leformat', label: 'Format', type: 'choice', type_options: { expanded: false, choices: '%choixformat%' }}
+                    
                     
     design: # Pour les optiosn possibles cf. https://github.com/javiereguiluz/EasyAdminBundle/blob/master/Resources/doc/book/2-design-configuration.md
-        color_scheme: 'light'
+        #color_scheme: 'light'
         menu:
             - { entity: 'Film', label: 'Films', icon: 'film', default: true, params: { sortField: 'updatedAt', sortDirection: 'DESC' } }
