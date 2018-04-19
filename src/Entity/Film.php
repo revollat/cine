@@ -32,6 +32,12 @@ class Film
     private $slug;
     
     /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+    
+    /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
      * @Vich\UploadableField(mapping="film_affiche", fileNameProperty="imageName", size="imageSize")
@@ -169,6 +175,30 @@ class Film
     public function getSlug()
     {
         return $this->slug;
+    }
+    
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Evenement
+     */
+    public function setDescription($description)
+    {
+
+        $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
     
 }

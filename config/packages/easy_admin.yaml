@@ -24,6 +24,7 @@ easy_admin:
                 fields:
                     - { property: titre, label: 'Titre' }
                     - { property: 'imageFile', type: 'vich_image', label: 'Affiche'  }
+                    - { property: 'description', type: 'Hillrange\CKEditor\Form\CKEditorType' }
                     
     design: # Pour les optiosn possibles cf. https://github.com/javiereguiluz/EasyAdminBundle/blob/master/Resources/doc/book/2-design-configuration.md
         color_scheme: 'light'
