@@ -3,9 +3,18 @@ services:
   app:
     build: .
     ports:
-      - 8000
+      - 8000:8000
     volumes:
       - ./:/var/www
     command: ["php", "-S", "0.0.0.0:8000", "-t", "/var/www/public"]
     environment:
       DATABASE_URL: sqlite:///%kernel.project_dir%/var/data.db
+#  blackfire:
+#    image: blackfire/blackfire
+#    environment:
+#        # Exposes the host BLACKFIRE_SERVER_ID and TOKEN environment variables.
+#        - BLACKFIRE_SERVER_ID=d2746780-028e-4d33-b90f-34a211806caf
+#        - BLACKFIRE_SERVER_TOKEN=e9494f389069bea28f46603991677630dc2b9166e61918862b26cc36f54223e4
+#        # You can also use global environment credentials :
+#        # BLACKFIRE_SERVER_ID: SERVER-ID
+#        # BLACKFIRE_SERVER_TOKEN: SERVER-TOKEN
