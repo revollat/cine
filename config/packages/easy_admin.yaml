@@ -9,7 +9,7 @@ easy_admin:
     formats:
         date:     'd/m/Y'
         time:     'H:i'
-        datetime: 'd/m/Y H:i:s'
+        datetime: 'd/m/Y H:i'
     disabled_actions: ['show']
 
     entities:
@@ -69,8 +69,8 @@ easy_admin:
                     
                     - { property: 'seances', label: 'Séance(s)', type: 'collection', type_options: { entry_type: 'App\Form\SeanceType', by_reference: false }}   
                     
-                    - { property: 'realisateurs', label: 'Réalisateur(s)', type: 'entity', type_options: { class: 'App\Entity\Realisateur', multiple: true, by_reference: false  } } # 
-                    - { property: 'cycles', label: 'Cycle(s)', type: 'entity', type_options: { class: 'App\Entity\Cycle', multiple: true, by_reference: false  } } # 
+                    - { property: 'realisateurs', label: 'Réalisateur(s)', type: 'entity', type_options: { class: 'App\Entity\Realisateur', multiple: true, by_reference: false  } }
+                    - { property: 'cycles', label: 'Cycle(s)', type: 'entity', type_options: { class: 'App\Entity\Cycle', multiple: true, by_reference: false  } }
                     - { property: 'imageFile', type: 'vich_image', label: 'Affiche'  }
                     - { property: 'description', type: 'Hillrange\CKEditor\Form\CKEditorType', label: 'Synopsis' }
                     #- { type: 'divider' }

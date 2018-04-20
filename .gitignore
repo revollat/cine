@@ -73,3 +73,5 @@
 
 /public/uploads/films/*
 !public/uploads/films/Test.png
+
+.idea/

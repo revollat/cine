@@ -14,9 +14,11 @@ class SeanceType extends AbstractType
     {
         $builder
             ->add('horaire', DateTimeType::class, [
-				'years' => range(date('Y') , date('Y') + 1),
-                //'widget' => 'single_text',
-                'format' => 'dd/MM/yyy'
+				//'years' => range(date('Y') , date('Y') + 1),
+                'widget' => 'single_text',
+                'format' => "dd/MM/yyyy HH:mm",
+                //'format' => "yyyy-MM-dd'T'HH:mm:ss",
+                'html5' => true
 			])
         ;
     }
