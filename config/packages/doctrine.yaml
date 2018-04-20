@@ -25,3 +25,9 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
                 alias: App
+
+# doctrine_cache:
+#     providers:
+#         tmdb_cache:
+#             file_system:
+#                 directory: %kernel.cache_dir%/tmdb

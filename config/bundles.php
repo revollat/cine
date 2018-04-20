@@ -19,4 +19,5 @@ return [
     Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle::class => ['all' => true],
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
     Hillrange\CKEditor\HillrangeCKEditorBundle::class => ['all' => true],
+    Tmdb\SymfonyBundle\TmdbSymfonyBundle::class => ['all' => true],
 ];

@@ -101,6 +101,15 @@
     "gedmo/doctrine-extensions": {
         "version": "v2.4.34"
     },
+    "guzzlehttp/guzzle": {
+        "version": "6.3.2"
+    },
+    "guzzlehttp/promises": {
+        "version": "v1.3.1"
+    },
+    "guzzlehttp/psr7": {
+        "version": "1.4.2"
+    },
     "hillrange/ckeditor": {
         "version": "0.1",
         "recipe": {
@@ -116,6 +125,9 @@
     "jms/metadata": {
         "version": "1.6.0"
     },
+    "kevinrob/guzzle-cache-middleware": {
+        "version": "v2.1.1"
+    },
     "monolog/monolog": {
         "version": "1.23.0"
     },
@@ -127,6 +139,12 @@
     },
     "pagerfanta/pagerfanta": {
         "version": "v1.0.5"
+    },
+    "php-tmdb/api": {
+        "version": "v2.1.14"
+    },
+    "php-tmdb/symfony": {
+        "version": "2.2.0"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
@@ -143,6 +161,9 @@
     "psr/container": {
         "version": "1.0.0"
     },
+    "psr/http-message": {
+        "version": "1.0.1"
+    },
     "psr/link": {
         "version": "1.0.0"
     },
@@ -151,6 +172,9 @@
     },
     "psr/simple-cache": {
         "version": "1.0.1"
+    },
+    "rtheunissen/guzzle-log-middleware": {
+        "version": "v0.4.1"
     },
     "sensio/framework-extra-bundle": {
         "version": "4.0",
