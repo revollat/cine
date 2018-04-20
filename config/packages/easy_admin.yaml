@@ -34,7 +34,7 @@ easy_admin:
                     - { property: titre, label: 'Titre', css_class: 'input-large', icon: 'film' }
                     - { property: titrevo, label: 'Titre (V.O.)', help: 'Si existant' }
                     - { type: 'divider' }
-                    - { property: 'realisateurs', label: 'Réalisateur(s)' }
+                    - { property: 'realisateurs', label: 'Réalisateur(s)', type: 'entity', type_options: { class: 'App\Entity\Realisateur', multiple: true, by_reference: false  } } # 
                     - { property: 'imageFile', type: 'vich_image', label: 'Affiche'  }
                     - { property: 'description', type: 'Hillrange\CKEditor\Form\CKEditorType', label: 'Synopsis' }
                     #- { type: 'divider' }
