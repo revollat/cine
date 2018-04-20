@@ -14,6 +14,32 @@ easy_admin:
 
     entities:
     
+        Cycle:
+            class: App\Entity\Cycle
+            label: 'Cycles'
+
+            list:
+                fields:
+                    - { property: nom, label: 'Nom' }
+                    
+            form:
+                title: "Modification/édition"
+                fields:
+                    - { property: nom, label: 'Nom', css_class: 'input-large' }
+
+        Realisateur:
+            class: App\Entity\Realisateur
+            label: 'Réalisateurs'
+
+            list:
+                fields:
+                    - { property: nom, label: 'Nom' }
+                    
+            form:
+                title: "Modification/édition"
+                fields:
+                    - { property: nom, label: 'Nom', css_class: 'input-large' }
+                    
         Film:
             class: App\Entity\Film
             label: 'Films'
@@ -21,9 +47,15 @@ easy_admin:
             list:
                 fields:
                     - { property: titre, label: 'Titre' }
+                    - { property: cycles, label: 'Cycle(s)' }
+                    - { property: sceances, label: 'Séance(s)' }
                     - { property: annee, label: 'Année', type: 'text' }
                     - { property: 'imageName', label: 'Affiche', type: 'image', base_path: '%app.path.films_image%' }
                     - { property: 'updatedAt', label: 'Dernière MàJ', format: 'd/m à H:i' }
+                    
+            # search:
+            #     fields: ['titre', 'cycles.nom']
+                    
                     
             form:
                 title: "Modification/édition"
@@ -34,7 +66,11 @@ easy_admin:
                     - { property: titre, label: 'Titre', css_class: 'input-large', icon: 'film' }
                     - { property: titrevo, label: 'Titre (V.O.)', help: 'Si existant' }
                     - { type: 'divider' }
+                    
+                    - { property: 'seances', label: 'Séance(s)', type: 'collection', type_options: { entry_type: 'App\Form\SeanceType', by_reference: false }}   
+                    
                     - { property: 'realisateurs', label: 'Réalisateur(s)', type: 'entity', type_options: { class: 'App\Entity\Realisateur', multiple: true, by_reference: false  } } # 
+                    - { property: 'cycles', label: 'Cycle(s)', type: 'entity', type_options: { class: 'App\Entity\Cycle', multiple: true, by_reference: false  } } # 
                     - { property: 'imageFile', type: 'vich_image', label: 'Affiche'  }
                     - { property: 'description', type: 'Hillrange\CKEditor\Form\CKEditorType', label: 'Synopsis' }
                     #- { type: 'divider' }
@@ -51,4 +87,6 @@ easy_admin:
     design: # Pour les optiosn possibles cf. https://github.com/javiereguiluz/EasyAdminBundle/blob/master/Resources/doc/book/2-design-configuration.md
         #color_scheme: 'light'
         menu:
+            - { entity: 'Cycle', label: 'Cycles', icon: 'recycle ' }
             - { entity: 'Film', label: 'Films', icon: 'film', default: true, params: { sortField: 'updatedAt', sortDirection: 'DESC' } }
+            - { entity: 'Realisateur', label: 'Réalisateurs', icon: 'user', params: { sortField: 'nom', sortDirection: 'ASC' } }

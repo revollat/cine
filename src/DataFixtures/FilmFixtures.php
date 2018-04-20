@@ -50,6 +50,7 @@ class FilmFixtures extends Fixture implements DependentFixtureInterface
     {
         return array(
             RealisateurFixtures::class,
+            CycleFixtures::class,
         );
     }
     

@@ -106,9 +106,21 @@ class Film
      */
     private $realisateurs;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Cycle", mappedBy="films")
+     */
+    private $cycles;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Seance", mappedBy="film", orphanRemoval=true, cascade={"persist"})
+     */
+    private $seances;
+
     public function __construct()
     {
         $this->realisateurs = new ArrayCollection();
+        $this->cycles = new ArrayCollection();
+        $this->seances = new ArrayCollection();
     }
     
 
@@ -339,6 +351,65 @@ class Film
         if ($this->realisateurs->contains($realisateur)) {
             $this->realisateurs->removeElement($realisateur);
             $realisateur->removeFilm($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Cycle[]
+     */
+    public function getCycles(): Collection
+    {
+        return $this->cycles;
+    }
+
+    public function addCycle(Cycle $cycle): self
+    {
+        if (!$this->cycles->contains($cycle)) {
+            $this->cycles[] = $cycle;
+            $cycle->addFilm($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCycle(Cycle $cycle): self
+    {
+        if ($this->cycles->contains($cycle)) {
+            $this->cycles->removeElement($cycle);
+            $cycle->removeFilm($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Seance[]
+     */
+    public function getSeances(): Collection
+    {
+        return $this->seances;
+    }
+
+    public function addSeance(Seance $seance): self
+    {
+        if (!$this->seances->contains($seance)) {
+            $this->seances[] = $seance;
+            $seance->setFilm($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSeance(Seance $seance): self
+    {
+        if ($this->seances->contains($seance)) {
+            $this->seances->removeElement($seance);
+            // set the owning side to null (unless already changed)
+            if ($seance->getFilm() === $this) {
+                $seance->setFilm(null);
+            }
         }
 
         return $this;
