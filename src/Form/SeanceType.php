@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class SeanceType extends AbstractType
 {
@@ -15,10 +16,17 @@ class SeanceType extends AbstractType
         $builder
             ->add('horaire', DateTimeType::class, [
 				//'years' => range(date('Y') , date('Y') + 1),
-                'widget' => 'single_text',
+                'date_widget' => 'single_text',
+                'time_widget' => 'single_text',
+                //'type' => 'datetime',
                 'format' => "dd/MM/yyyy HH:mm",
                 //'format' => "yyyy-MM-dd'T'HH:mm:ss",
-                'html5' => true
+                'html5' => true,
+                'required' => true,
+                'constraints' => array(
+                    new Assert\DateTime(),
+                    new Assert\NotNull()
+                ),
 			])
         ;
     }

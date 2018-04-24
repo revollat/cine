@@ -1,14 +1,35 @@
 version: '3'
 services:
+
   app:
     build: .
     ports:
-      - 8000:8000
+      - 8000
     volumes:
       - ./:/var/www
     command: ["php", "-S", "0.0.0.0:8000", "-t", "/var/www/public"]
     environment:
       DATABASE_URL: sqlite:///%kernel.project_dir%/var/data.db
+
+  sqliteweb:
+    image: coleifer/sqlite-web
+    ports:
+      - 8080
+    volumes:
+      - ./var/data.db:/data/data.db
+    environment:
+      SQLITE_DATABASE: "data.db"
+      
+  # adminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8080
+  #   volumes:
+  #     - ./var/data.db:/data.db
+    # environment:
+    #   ADMINER_PLUGINS: "login-sqlite"
+      
 #  blackfire:
 #    image: blackfire/blackfire
 #    environment:

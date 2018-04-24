@@ -1,5 +1,5 @@
 tmdb_symfony:
-    api_key: YOUR_API_KEY_HERE
+    api_key: e86c396f489ae8079bf619eff3c060a9
     repositories:
         enabled: true # Set to false to disable repositories
     twig_extension:
